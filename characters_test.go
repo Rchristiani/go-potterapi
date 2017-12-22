@@ -25,7 +25,7 @@ func TestGetCharacters(t *testing.T) {
 }
 
 func TestGetCharactersByID(t *testing.T) {
-	if !CheckExists("ENVIROMENT") {
+	if !CheckExists("ENVIRONMENT") {
 		err := godotenv.Load()
 
 		if err != nil {
