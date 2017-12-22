@@ -8,13 +8,15 @@ import (
 )
 
 func TestGetCharacters(t *testing.T) {
-	err := godotenv.Load()
-	if err != nil {
-		t.Fatal("Failed to load .env")
+	if !CheckExists("ENVIRONMENT") {
+		err := godotenv.Load()
+		if err != nil {
+			t.Fatal("Failed to load .env")
+		}
 	}
 	c := ClientInitialize(os.Getenv("POTTERAPIKEY"))
 
-	_, err = c.GetCharacters()
+	_, err := c.GetCharacters()
 
 	if err != nil {
 		t.Fatal(err)
@@ -23,10 +25,12 @@ func TestGetCharacters(t *testing.T) {
 }
 
 func TestGetCharactersByID(t *testing.T) {
-	err := godotenv.Load()
+	if !CheckExists("ENVIROMENT") {
+		err := godotenv.Load()
 
-	if err != nil {
-		t.Fatal("Failed to load .env")
+		if err != nil {
+			t.Fatal("Failed to load .env")
+		}
 	}
 
 	c := ClientInitialize(os.Getenv("POTTERAPIKEY"))
